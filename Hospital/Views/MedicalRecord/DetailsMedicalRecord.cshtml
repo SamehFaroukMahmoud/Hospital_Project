@@ -1,0 +1,44 @@
+﻿@model Hospital.Models.MedicalRecord
+
+@{
+    ViewData["Title"] = "Medical Record Details";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">Medical Record Details</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Patient</dt>
+            <dd class="col-sm-9">
+                @(Model.patient != null ? Model.patient.Name : "No Patient Assigned")
+            </dd>
+
+            <dt class="col-sm-3">Doctor</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.doctor.Name)
+            </dd>
+
+            <dt class="col-sm-3">Diagnosis</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Diagnosis)
+            </dd>
+
+            <dt class="col-sm-3">Treatment Plan</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TreatmentPlan)
+            </dd>
+
+            <dt class="col-sm-3">Prescription</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.prescription.DosageInstructions)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <a asp-action="EditeMedicalRecord" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

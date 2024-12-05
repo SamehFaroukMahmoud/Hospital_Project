@@ -1,0 +1,69 @@
+﻿@model System.Collections.Generic.List<MedicalRecord>
+
+@{
+    ViewData["Title"] = "MedicalRecords Index";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">MedicalRecords List</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a asp-action="CreateMedicalRecord" asp-controller="MedicalRecord" class="btn btn-success">
+            <i class="fa fa-plus"></i> Add MedicalRecord
+        </a>
+       
+    </div>
+
+    <table class="table table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Diagnosis</th>
+                <th>TreatmentPlan</th>
+                <th>Prescription</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var MedicalRecord in Model)
+                {
+                    <tr class="@((MedicalRecord.IsActive) ? "" : "table-danger")">
+                        <td>@MedicalRecord.patient?.Name</td>
+                        <td>@MedicalRecord.doctor?.Name</td>
+                        <td>@MedicalRecord.Diagnosis</td>
+                        <td>@MedicalRecord.TreatmentPlan</td>
+                        <td>@MedicalRecord.prescription</td>
+                        <td class="d-flex">
+                            @if (MedicalRecord.IsActive == true)
+                            {
+                                <a asp-action="EditeMedicalRecord" asp-route-id="@MedicalRecord.Id" class="btn btn-warning me-2">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <a asp-action="DetailsMedicalRecord" asp-route-id="@MedicalRecord.Id" class="btn btn-info me-2">
+                                    <i class="fa fa-info-circle"></i> Details
+                                </a>
+
+                            }
+
+                            <a asp-action="DeleteMedicalRecord" asp-route-id="@MedicalRecord.Id" class="btn btn-danger"
+                               onclick="return confirm('Are you sure you want to delete this MedicalRecord?')">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No MedicalRecords found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

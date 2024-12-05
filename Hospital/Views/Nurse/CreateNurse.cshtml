@@ -1,0 +1,52 @@
+﻿@model Hospital.Models.Nurse
+
+@{
+    ViewData["Title"] = "Create Nurse";
+}
+
+<div class="card shadow-sm mt-4">
+
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Create New Nurse</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="CreateNurse">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label asp-for="Shift" class="form-label">Shift</label>
+                     @Html.DropDownListFor(model => model.Shift, (SelectList)ViewBag.listShift, "Select Shift", new { @class = "form-control" })
+                    <span asp-validation-for="Shift" class="text-danger"></span>
+                </div>
+
+
+                <div class="col-md-6">
+                    <label asp-for="Name" class="form-label">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                 </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                    <div class="col-md-6">
+                        <label asp-for="ContactNumber" class="form-label">Contact Number</label>
+                        <input asp-for="ContactNumber" type="tel" class="form-control" />
+                        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                    </div>
+            </div>
+
+           
+            <div class="d-flex justify-content-end">
+                <input type="submit" value="Create Nurse" class="btn btn-success" />
+            </div>
+
+        </form>
+    </div>
+</div>
+<div class="d-flex justify-content-between">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

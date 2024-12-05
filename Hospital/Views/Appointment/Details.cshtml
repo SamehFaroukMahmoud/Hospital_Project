@@ -1,0 +1,59 @@
+﻿@model Hospital.Models.Appointment
+
+@{
+    ViewData["Title"] = "Details Appointment";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">Appointment Details</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <!-- Date -->
+            <div class="col-md-6 mb-3">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+            </div>
+
+            <!-- Patient -->
+            <div class="col-md-6 mb-3">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.patient)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.patient.Email)
+                </dd>
+            </div>
+
+            <!-- Doctor -->
+            <div class="col-md-6 mb-3">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.doctor)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.doctor.Email)
+                </dd>
+            </div>
+
+            <!-- Status -->
+            <div class="col-md-6 mb-3">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <a asp-action="EditeAppointment" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

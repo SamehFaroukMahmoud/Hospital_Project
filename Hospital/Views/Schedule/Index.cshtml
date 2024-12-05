@@ -1,0 +1,67 @@
+﻿@model System.Collections.Generic.List<Schedule>
+
+@{
+    ViewData["Title"] = "Schedule Index";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1>Doctor's Schedule List</h1>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a asp-action="CreateSchedule" asp-controller="Schedule" class="btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> Add Schedule
+        </a>
+    </div>
+
+    <div class="table-responsive shadow-sm">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Day of Week</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Doctor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var schedule in Model)
+                    {
+                        <tr class="@((schedule.IsActive) ? "" : "table-danger")">
+                            <td>@schedule.DayOfWeek</td>
+                            <td>@schedule.StartTime</td>
+                            <td>@schedule.EndTime</td>
+                            <td>@schedule.doctor?.Name</td>
+                            <td class="text-center">
+                                @if(schedule.IsActive==true)
+                                {
+                                    <a asp-action="EditeSchedule" asp-route-id="@schedule.Id" class="btn btn-warning btn-sm me-2">
+                                        <i class="fa fa-edit"></i> Edit
+                                    </a>
+                                    <a asp-action="DetailsSchedule" asp-route-id="@schedule.Id" class="btn btn-info btn-sm me-2">
+                                        <i class="fa fa-info-circle"></i> Details
+                                    </a>
+                                }
+                                
+                                <a asp-action="DeleteSchedule" asp-route-id="@schedule.Id" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Are you sure you want to delete this schedule?')">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No schedules available.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

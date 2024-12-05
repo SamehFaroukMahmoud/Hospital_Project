@@ -1,0 +1,70 @@
+﻿@model Hospital.Models.Billing
+
+<h1>Create Billing</h1>
+
+<hr />
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Create New Billing</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="CreateBilling">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PatientId" class="control-label">Patient</label>
+                        @Html.DropDownListFor(model => model.PatientId, (SelectList)ViewBag.selectlistPatient, "Select Patient", new { @class = "form-control" })
+                        <span asp-validation-for="PatientId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TotalAmount" class="control-label">Total Amount</label>
+                        <input asp-for="TotalAmount" class="form-control" />
+                        <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PaymentStatus" class="control-label">Payment Status</label>
+                        @Html.DropDownListFor(model => model.PaymentStatus, (SelectList)ViewBag.selectlistPaymentStatus, "Select Payment Status", new { @class = "form-control" })
+                        <span asp-validation-for="PaymentStatus" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DateGenerated" class="control-label">Date Generated</label>
+                        <input asp-for="DateGenerated" class="form-control" />
+                        <span asp-validation-for="DateGenerated" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DueDate" class="control-label">Due Date</label>
+                        <input asp-for="DueDate" class="form-control" />
+                        <span asp-validation-for="DueDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="AppointmentId" class="control-label">Appointment</label>
+                        @Html.DropDownListFor(model => model.AppointmentId, (SelectList)ViewBag.selectlistAppointment, "Select Appointment", new { @class = "form-control" })
+                        <span asp-validation-for="AppointmentId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success w-100" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

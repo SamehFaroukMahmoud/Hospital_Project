@@ -1,0 +1,34 @@
+﻿@model Hospital.Models.Doctor
+
+@{
+    ViewData["Title"] = "DetailsDoctor";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Doctor Details</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Specialization</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Specialization)</dd>
+
+            <dt class="col-sm-4">Room Number</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.RoomNumber)</dd>
+
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
+
+            <dt class="col-sm-4">Contact Number</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.ContactNumber)</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <a asp-action="EditeDoctor" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

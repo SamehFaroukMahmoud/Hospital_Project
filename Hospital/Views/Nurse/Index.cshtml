@@ -1,0 +1,72 @@
+﻿@model System.Collections.Generic.List<Nurse>
+
+@{
+    ViewData["Title"] = "Nurses Index";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Nurses List</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a asp-controller="Nurse" asp-action="CreateNurse" class="btn btn-success">
+            <i class="fa fa-plus"></i> Add Nurse
+        </a>
+        <form asp-action="Index" method="get" class="d-flex">
+            <input type="text" name="search" id="search" class="form-control me-2" placeholder="Search Nurses..." />
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-search"></i> Search
+            </button>
+        </form>
+    </div>
+
+    <table class="table table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Nurse Name</th>
+                <th>Phone</th>
+                <th>Shift</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var Nurse in Model)
+                {
+                    <tr class ="@((Nurse.IsActive) ? "" : "table-danger")">
+                        <td>@Nurse.Name</td>
+                        <td>@Nurse.ContactNumber</td>
+                        <td>@Nurse.Shift</td>
+                        <td>@Nurse.Email</td>
+                        <td class="d-flex">
+                            @if (Nurse.IsActive == true)
+                            {
+                                <a asp-action="EditeNurse" asp-route-id="@Nurse.Id" class="btn btn-warning me-2">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <a asp-action="DetailsNurse" asp-route-id="@Nurse.Id" class="btn btn-info me-2">
+                                    <i class="fa fa-info-circle"></i> Details
+                                </a>
+                                
+                            }
+
+                          
+                                 <a asp-action="DeleteNurse" asp-route-id="@Nurse.Id" class="btn btn-danger me-2"
+                                   onclick="return confirm('Are you sure you want to delete this nurse?')">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No nurses found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

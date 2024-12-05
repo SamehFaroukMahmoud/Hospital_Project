@@ -1,0 +1,66 @@
+﻿@model System.Collections.Generic.List<Billing>
+
+@{
+    ViewData["Title"] = "Billing Index";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Billing List</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a asp-action="CreateBilling" asp-controller="Billing" class="btn btn-success">
+            <i class="fa fa-plus"></i> Add Billing
+        </a>
+        
+    </div>
+
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Patient Name</th>
+                <th>Total Amount</th>
+                <th>Billing Payment Status</th>
+                <th>Billing Due Date</th>
+                <th>Appointment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var billing in Model)
+                {
+                    <tr class="@((billing.IsActive) ? "" : "table-danger")">
+                        <td>@billing.patient.Name</td>
+                        <td>@billing.TotalAmount</td>
+                        <td>@billing.PaymentStatus</td>
+                        <td>@billing.DueDate?.ToString("dd/MM/yyyy")</td>
+                        <td>@billing.AppointmentId</td>
+                        <td class="d-flex">
+                            @if (billing.IsActive == true)
+                            {
+                                <a asp-action="EditeBilling" asp-route-id="@billing.Id" class="btn btn-warning me-2">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <a asp-action="DetailsBilling" asp-route-id="@billing.Id" class="btn btn-info me-2">
+                                    <i class="fa fa-info-circle"></i> Details
+                                </a>
+                            }
+                            
+                            <a asp-action="DeleteBilling" asp-route-id="@billing.Id" class="btn btn-danger"
+                               onclick="return confirm('Are you sure you want to delete this billing?')">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No billing records found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

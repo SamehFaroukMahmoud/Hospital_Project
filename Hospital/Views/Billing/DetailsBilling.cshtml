@@ -1,0 +1,64 @@
+﻿@model Hospital.Models.Billing
+
+@{
+    ViewData["Title"] = "Details Billing";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Details Billing</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <div class="col-md-6">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.patient)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.patient.Name)
+                </dd>
+            </div>
+
+            <div class="col-md-6">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.TotalAmount)
+                </dd>
+            </div>
+
+            <div class="col-md-6">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.PaymentStatus)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.PaymentStatus)
+                </dd>
+            </div>
+
+            <div class="col-md-6">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.DateGenerated)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.DateGenerated)
+                </dd>
+            </div>
+
+            <div class="col-md-6">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.DueDate)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.DueDate)
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <a asp-action="EditeBilling" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

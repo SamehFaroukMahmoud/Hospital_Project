@@ -1,0 +1,40 @@
+﻿@model Hospital.Models.Patient
+
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Patient Details</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Date of Birth</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DateOfBirth)</dd>
+
+            <dt class="col-sm-4">Gender</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Gender)</dd>
+
+            <dt class="col-sm-4">Address</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
+
+            <dt class="col-sm-4">Emergency Contact</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.EmergencyContact)</dd>
+
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
+
+            <dt class="col-sm-4">Contact Number</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.ContactNumber)</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <a asp-action="EditePatient" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

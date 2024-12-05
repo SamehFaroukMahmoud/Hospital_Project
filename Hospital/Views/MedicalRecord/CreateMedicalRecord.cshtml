@@ -1,0 +1,69 @@
+﻿@model Hospital.Models.MedicalRecord
+
+@* @{
+    ViewData["Title"] = "CreateMedicalRecord";
+} *@
+
+<div class="card shadow-lg mt-5 mx-auto" style="max-width:1200px;">
+    <div class="card-header bg-success text-white text-center">
+        <h4 class="mb-0">Create New Medical Record</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="CreateMedicalRecord">
+            <div asp-validation-summary="All" class="alert alert-danger mb-4" role="alert"></div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PatientId" class="form-label">Patient</label>
+                         @Html.DropDownListFor(model => model.PatientId, (SelectList)ViewBag.listOfPatient, "Select Patient", new { @class = "form-control" })
+                        <span asp-validation-for="PatientId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DoctorId" class="form-label">Doctor</label>
+                         @Html.DropDownListFor(model => model.DoctorId, (SelectList)ViewBag.listOfDoctor, "Select Doctor", new { @class = "form-control" })
+                        <span asp-validation-for="DoctorId" class="text-danger"></span>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Diagnosis" class="form-label">Diagnosis</label>
+                        <input asp-for="Diagnosis" class="form-control" placeholder="Enter Diagnosis" />
+                        <span asp-validation-for="Diagnosis" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TreatmentPlan" class="form-label">Treatment Plan</label>
+                        <input asp-for="TreatmentPlan" class="form-control" placeholder="Enter Treatment Plan" />
+                        <span asp-validation-for="TreatmentPlan" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PrescriptionId" class="form-label">Prescription</label>
+                        @Html.DropDownListFor(model => model.PrescriptionId, (SelectList)ViewBag.listOfPrescription, "Select Prescription", new { @class = "form-control" })
+                         <span asp-validation-for="PrescriptionId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success w-100">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-lg-start mt-2">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
